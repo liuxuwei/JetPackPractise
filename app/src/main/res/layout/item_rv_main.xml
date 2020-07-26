@@ -2,7 +2,12 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="bean"
+            type="com.example.lottieapp.db.ItemBean" />
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +16,7 @@
         android:orientation="vertical"
         android:padding="8dp"
         android:layout_marginTop="2dp"
+        android:onClick="@{listener}"
         android:background="@android:color/holo_blue_light">
 
 
@@ -19,6 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_name_item"
             tools:text="测试文字"
+            android:text="@{bean.name}"
             android:textColor="@android:color/white"/>
 
 

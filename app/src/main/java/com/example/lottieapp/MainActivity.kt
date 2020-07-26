@@ -117,7 +117,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         Log.e(TAG, "onDestroy")
         super.onDestroy()
-        stopService(mIntent)
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

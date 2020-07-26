@@ -11,6 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.lottieapp.databinding.ActivityLoginBinding
+import com.example.lottieapp.db.LoginStatus
+import com.example.lottieapp.db.UserDatabase
+import kotlin.concurrent.thread
 
 class LoginFragment: Fragment() {
 
@@ -21,6 +24,12 @@ class LoginFragment: Fragment() {
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(LoginViewModel::class.java).apply {
             loginOk.observe(this@LoginFragment, Observer {
                 if (it) {
+                    thread {
+                        UserDatabase.getInstance(requireContext())
+                            .getLoginStatusDao()
+                            .insertStatus(LoginStatus(0, true))
+                    }
+
                     Navigation.findNavController(requireActivity(), R.id.nav_host_main).navigateUp()
                 }
             })

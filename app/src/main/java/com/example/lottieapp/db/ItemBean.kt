@@ -17,7 +17,7 @@ data class ItemBean (
 @Dao
 interface ItemDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: List<ItemBean>)
 
     @Query("select * from tb_item")

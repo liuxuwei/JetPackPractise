@@ -31,7 +31,7 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
                 .getUserDao()
                 .insert(user)
         }
-        SystemClock.sleep(2000)
+        SystemClock.sleep(500)
         loginOk.value = true
     }
 }

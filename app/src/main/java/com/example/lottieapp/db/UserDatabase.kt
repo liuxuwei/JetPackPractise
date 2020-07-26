@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [UserBean::class, LoginStatus::class], version = 1, exportSchema = false)
+@Database(entities = [UserBean::class, LoginStatus::class, ItemBean::class], version = 1, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
 
     abstract fun getUserDao(): UserDao
     abstract fun getLoginStatusDao(): LoginStatusDao
+    abstract fun getItemDao(): ItemDao
 
     companion object {
         private var instance: UserDatabase? = null

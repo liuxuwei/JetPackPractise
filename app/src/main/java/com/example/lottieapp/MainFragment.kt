@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.lottieapp.databinding.FragmentMainBinding
 
@@ -15,7 +16,12 @@ class MainFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider.AndroidViewModelFactory(Application()).create(MainViewModel::class.java)
+        viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MainViewModel::class.java).apply {
+            liveList?.observe(requireActivity(), Observer {
+                myAdapter.submitList(it)
+                myAdapter.notifyDataSetChanged()
+            })
+        }
     }
 
 
